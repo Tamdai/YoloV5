@@ -1,0 +1,23 @@
+train: /content/drive/MyDrive/PlantDiseases_Training
+val: /content/drive/MyDrive/PlantDiseases_Training
+# Classes
+nc : 4 
+names: [Sooty_mold', 'Black_rot', 'Tar_spot', 'Downy_mildew']
+
+
+
+%pip install -q wandb
+import wandb
+wandb.login()
+
+
+!python train.py --img 640  --epochs 100 --data PlantDiseases_Training.yaml --weights yolov5s.pt 
+
+
+python detect.py --weights runs/train/exp/weights/best.pt --img 640 --conf 0.25 --source Test/
+
+
+https://github.com/ultralytics/yolov5
+https://app.roboflow.com/
+https://wandb.ai/home
+https://colab.research.google.com/
