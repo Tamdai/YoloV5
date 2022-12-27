@@ -9,11 +9,12 @@ display = utils.notebook_init()  # checks
 
 
 
-train: /content/drive/MyDrive/PlantDiseases_Training
-val: /content/drive/MyDrive/PlantDiseases_Training
+train: /content/drive/MyDrive/Dog_Training
+val: /content/drive/MyDrive/Dog_Training
 # Classes
-nc : 4 
-names: [Sooty_mold', 'Black_rot', 'Tar_spot', 'Downy_mildew']
+nc : 5 
+names: ['French_Bulldog', 'Golden_Retriever', 'Labrador_Retriever.', 'Siberian_Husky', 'german_shepherd']
+
 
 
 
@@ -22,10 +23,10 @@ import wandb
 wandb.login()
 
 
-!python train.py --img 640  --epochs 100 --data PlantDiseases_Training.yaml --weights yolov5s.pt 
+!python train.py --img 640  --epochs 50 --data Dogs.yaml --weights yolov5s.pt
 
 
-python detect.py --weights runs/train/exp/weights/best.pt --img 640 --conf 0.25 --source Test/
+!python detect.py --weights runs/train/exp/weights/best.pt --img 640 --conf 0.25 --source Test/
 
 
 https://github.com/ultralytics/yolov5
